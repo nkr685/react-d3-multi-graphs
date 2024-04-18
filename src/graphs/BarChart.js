@@ -20,6 +20,7 @@ class BarChart extends Component {
         var data = this.props.data;
         var x = this.props.x;
         var y = this.props.y;
+        var font_size = 12
 
         var temp_data = d3.flatRollup(
             data,
@@ -84,6 +85,15 @@ class BarChart extends Component {
             return h - y_scale(d[1]);
         })
         .attr("fill", "gray")
+        .each(function(d) {
+            d3.select(this.parentNode)
+            .append("text")
+            .attr("x", x_scale(d[0]) + x_scale.bandwidth()/2)
+            .attr("y", y_scale(d[1]) + font_size)
+            .attr('text-anchor', "middle")
+            .style("fill", "black")
+            .text(d[1].toFixed(6))
+        })
     }
     render () {
         return (

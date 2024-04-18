@@ -105,7 +105,8 @@ class CorrelationMatrix extends Component {
                 .attr("y", y_scale(rect_data.y) + y_scale.bandwidth()/2)
                 .attr('text-anchor', "middle")
                 .style("fill", "black")
-                .text(rect_data.r.toFixed(2));    
+                .text(rect_data.r.toFixed(2))
+                .on('click', function() {handleChange(null, rect_data)});   
             }      
         );
 
