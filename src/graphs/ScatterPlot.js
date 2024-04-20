@@ -14,7 +14,7 @@ class ScatterPlot extends Component {
     componentDidUpdate() {
         // set the dimensions and margins of the graph
         var margin = { top: 10, right: 40, bottom: 30, left: 40 },
-        w = 1600 - margin.left - margin.right,
+        w = 1400 - margin.left - margin.right,
         h = 400 - margin.top - margin.bottom;
 
         d3.select('.scatter').select('g').selectAll('*').remove();

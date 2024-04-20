@@ -22,13 +22,13 @@
   flex-direction: column;
 }
 
-.row1 {
+/* .row1 {
   height: 45vh;
 }
 
 .row2 {
   height: 50vh;
-}
+} */
 
 .graph-container {
   display: flex;
@@ -36,4 +36,9 @@
   align-items: center;
   border: 1px solid rgb(230, 230, 230);
   flex-grow: 1;
+  margin: 10px;
+}
+
+.bar, .scatter, .corr {
+  padding: 100px;
 }

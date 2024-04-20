@@ -63,6 +63,7 @@ class App extends Component {
                             <BarChart x={this.state.radioOption} y={this.state.dropdownOption} data={this.state.data}/>                                
                         </div>
                         <div className='graph-container'>
+                            <div>Correlation Matrix</div>
                             <CorrelationMatrix axes={this.state.numCols} data={this.state.data} handleChange={handleMatrix}/>
                         </div>                        
                     </div>
