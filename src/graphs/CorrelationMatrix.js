@@ -113,10 +113,27 @@ class CorrelationMatrix extends Component {
         var legend = container.append("svg")
         .attr("transform", `translate(${w + legendWidth}, 0)`)
 
+        // gradient for color bar
+        var grad = legend.append("defs")
+            .append("linearGradient")
+            .attr("id", "legend-gradient")
+            .attr('x1', '0%')
+            .attr('x2', '0%')
+            .attr('y1', '100%')
+            .attr('y2', '0%');
+
+        grad.append("stop")
+            .attr("offset", "0%")
+            .attr("stop-color", sequentialScale(0.5));
+
+        grad.append("stop")
+            .attr("offset", "100%")
+            .attr("stop-color", sequentialScale(1));
+          
         legend.append("rect")
         .attr("width", legendWidth)
         .attr("height", h)
-        .style("fill", "green")
+        .style("fill", "url(#legend-gradient)")
 
     }
     render () {
