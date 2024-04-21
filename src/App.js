@@ -60,7 +60,7 @@ class App extends Component {
                     <div className='row-items'>
                         <div className='graph-container'>
                             <Radio defaultValue={this.state.radioOption} options={this.state.catCols} handleChange={handleRadio}/>
-                            <BarChart x={this.state.radioOption} y={this.state.dropdownOption} data={this.state.data}/>                                
+                            <BarChart x={this.state.radioOption} y={this.state.dropdownOption} data={this.state.data} xAxisTitle={this.state.radioOption} yAxisTitle={this.state.dropdownOption}/>                                
                         </div>
                         <div className='graph-container'>
                             <div>Correlation Matrix</div>

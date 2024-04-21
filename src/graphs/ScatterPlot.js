@@ -69,6 +69,22 @@ class ScatterPlot extends Component {
         })
         .attr("r", 3)
         .attr("fill", "gray");
+
+        // x-axis label
+        container.append("text")
+            .attr("x", w/2)
+            .attr("y", h + margin.bottom)
+            .attr("text-anchor", "middle")
+            .text("total_bill");
+
+        // y-axis lable
+        container.append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("x", -h / 2)
+            .attr("y", -margin.left)
+            .attr("dy", "1em")
+            .attr("text-anchor", "middle")
+            .text("tip");
     }
 
     render () {

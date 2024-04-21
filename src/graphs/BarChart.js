@@ -20,6 +20,8 @@ class BarChart extends Component {
         var data = this.props.data;
         var x = this.props.x;
         var y = this.props.y;
+        const xAxisTitle = this.props.xAxisTitle;
+        const yAxisTitle = this.props.yAxisTitle;
         var font_size = 12
 
         var temp_data = d3.flatRollup(
@@ -93,7 +95,23 @@ class BarChart extends Component {
             .attr('text-anchor', "middle")
             .style("fill", "black")
             .text(d[1].toFixed(6))
-        })
+        });
+
+        // x-axis lable
+        container.append("text")
+            .attr("x", w/2)
+            .attr("y", h + margin.bottom)
+            .attr("text-anchor", "middle")
+            .text(xAxisTitle);
+
+        // y-axis lable
+        container.append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("x", -h / 2)
+            .attr("y", -margin.left)
+            .attr("dy", "1em")
+            .attr("text-anchor", "middle")
+            .text(yAxisTitle);
     }
     render () {
         return (
