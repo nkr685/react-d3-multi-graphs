@@ -19,8 +19,8 @@ class CorrelationMatrix extends Component {
         var margin = { top: 10, right: 100, bottom: 50, left: 50 };
         var legendSpacing = 20;
         var legendWidth = 50;
-        var w = (window.innerWidth/2) - margin.left - margin.right - legendSpacing - legendWidth;
-        var h = (window.innerHeight*.45) - margin.top - margin.bottom;
+        var w = (this.props.width/2) - margin.left - margin.right - legendSpacing - legendWidth;
+        var h = (this.props.height*.45) - margin.top - margin.bottom;
 
         var sequentialScale = d3.scaleSequential(d3.interpolateInferno).domain([0.4, 1]);
 

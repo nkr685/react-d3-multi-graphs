@@ -4,7 +4,8 @@ import * as d3 from "d3"
 class BarChart extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+        };
     }
 
     componentDidMount() { // preprocessing on long running task so it doesnt affect rendering process, in dev mode- doesnt work right, only mounts 1 time at the beginning, then updates
@@ -14,8 +15,8 @@ class BarChart extends Component {
     componentDidUpdate() { // preprocessing on long running task so it doesnt affect rendering process
         // set the dimensions and margins of the graph
         var margin = { top: 10, right: 50, bottom: 50, left: 50 };
-        var w = (window.innerWidth/2) - margin.left - margin.right - 4;
-        var h = (window.innerHeight*.45) - margin.top - margin.bottom;
+        var w = (this.props.width/2) - margin.left - margin.right - 4;
+        var h = (this.props.height*.45) - margin.top - margin.bottom;
 
         var data = this.props.data;
         var x = this.props.x;

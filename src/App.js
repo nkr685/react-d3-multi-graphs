@@ -12,10 +12,25 @@ class App extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {data:[], numCols:[], catCols:[], radioOption:"None", dropdownOption:"None", matrixX:"None", matrixY:"None"};
+        this.state = {
+            data:[], 
+            numCols:[], 
+            catCols:[], 
+            radioOption:"None", 
+            dropdownOption:"None", 
+            matrixX:"None", 
+            matrixY:"None",
+            width: window.innerWidth,
+            height: window.innerHeight
+        };
+    }
+
+    handleResize = () => {
+        this.setState({width: window.innerWidth, height: window.innerHeight})
     }
 
     componentDidMount() {
+        window.addEventListener('resize', this.handleResize)
         var self=this;
         d3.csv(tips, function(d) {
             return {
@@ -59,15 +74,15 @@ class App extends Component {
                 <div className='row-items'>
                     <div className='graph-container'>
                         <Radio defaultValue={this.state.radioOption} options={this.state.catCols} handleChange={handleRadio}/>
-                        <BarChart x={this.state.radioOption} y={this.state.dropdownOption} data={this.state.data} xAxisTitle={this.state.radioOption} yAxisTitle={this.state.dropdownOption}/>                                 
+                        <BarChart x={this.state.radioOption} y={this.state.dropdownOption} data={this.state.data} xAxisTitle={this.state.radioOption} yAxisTitle={this.state.dropdownOption} width={this.state.width} height={this.state.height}/>                                 
                     </div>
                     <div className='graph-container'>
                         <label style={{color: "white"}}>SPACING, DONT DELETE!!!!</label>
-                        <CorrelationMatrix axes={this.state.numCols} data={this.state.data} handleChange={handleMatrix}/>
+                        <CorrelationMatrix axes={this.state.numCols} data={this.state.data} handleChange={handleMatrix} width={this.state.width} height={this.state.height}/>
                     </div>                        
                 </div>
                 <div className='graph-container'>
-                    <ScatterPlot x={this.state.matrixX} y={this.state.matrixY} data={this.state.data}/>
+                    <ScatterPlot x={this.state.matrixX} y={this.state.matrixY} data={this.state.data} width={this.state.width} height={this.state.height}/>
                 </div>
             </div>
         )
