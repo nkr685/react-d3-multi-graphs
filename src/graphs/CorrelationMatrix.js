@@ -14,15 +14,16 @@ class CorrelationMatrix extends Component {
 
     componentDidUpdate() { // preprocessing on long running task so it doesnt affect rendering process
         // set the dimensions and margins of the graph
-        var margin = { top: 10, right: 40, bottom: 30, left: 40 }
+        var { data, axes, handleChange} = this.props;
+
+        var margin = { top: 10, right: 100, bottom: 50, left: 50 };
+        var legendSpacing = 20;
         var legendWidth = 50;
-        var w = 600 - margin.left - margin.right - legendWidth
-        var h = 400 - margin.top - margin.bottom;
+        var w = (window.innerWidth/2) - margin.left - margin.right - legendSpacing - legendWidth;
+        var h = (window.innerHeight*.45) - margin.top - margin.bottom;
 
         var sequentialScale = d3.scaleSequential(d3.interpolateInferno).domain([0.4, 1]);
 
-
-        var { data, axes, handleChange } = this.props;
         var filteredData = data.map(row => {
             var rows = {};
             axes.forEach(column => {
@@ -49,7 +50,7 @@ class CorrelationMatrix extends Component {
         
         var container = d3
         .select(".corr")
-        .attr("width", w + margin.left + margin.right + legendWidth)
+        .attr("width", w + margin.left + margin.right + legendSpacing + legendWidth)
         .attr("height", h + margin.top + margin.bottom)
         .select(".g_3")
         .attr("transform", `translate(${margin.left}, ${margin.top})`);
@@ -111,7 +112,7 @@ class CorrelationMatrix extends Component {
         );
 
         var legend = container.append("svg")
-        .attr("transform", `translate(${w + legendWidth}, 0)`)
+        .attr("transform", `translate(${w + legendSpacing}, 0)`)
 
         // gradient for color bar
         var grad = legend.append("defs")

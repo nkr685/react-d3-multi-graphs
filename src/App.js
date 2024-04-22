@@ -54,24 +54,20 @@ class App extends Component {
         }
 
         return (
-            <div className='container'>
+            <div>
                 <Navbar defaultValue={this.state.dropdownOption} options={this.state.numCols} handleChange={handleDropdown}/>
-                <div className='row1'>
-                    <div className='row-items'>
-                        <div className='graph-container'>
-                            <Radio defaultValue={this.state.radioOption} options={this.state.catCols} handleChange={handleRadio}/>
-                            <BarChart x={this.state.radioOption} y={this.state.dropdownOption} data={this.state.data} xAxisTitle={this.state.radioOption} yAxisTitle={this.state.dropdownOption}/>                                
-                        </div>
-                        <div className='graph-container'>
-                            <div>Correlation Matrix</div>
-                            <CorrelationMatrix axes={this.state.numCols} data={this.state.data} handleChange={handleMatrix}/>
-                        </div>                        
-                    </div>
-                </div>
-                <div className='row2'>
+                <div className='row-items'>
                     <div className='graph-container'>
-                        <ScatterPlot x={this.state.matrixX} y={this.state.matrixY} data={this.state.data}/>
+                        <Radio defaultValue={this.state.radioOption} options={this.state.catCols} handleChange={handleRadio}/>
+                        <BarChart x={this.state.radioOption} y={this.state.dropdownOption} data={this.state.data} xAxisTitle={this.state.radioOption} yAxisTitle={this.state.dropdownOption}/>                                 
                     </div>
+                    <div className='graph-container'>
+                        <label style={{color: "white"}}>SPACING, DONT DELETE!!!!</label>
+                        <CorrelationMatrix axes={this.state.numCols} data={this.state.data} handleChange={handleMatrix}/>
+                    </div>                        
+                </div>
+                <div className='graph-container'>
+                    <ScatterPlot x={this.state.matrixX} y={this.state.matrixY} data={this.state.data}/>
                 </div>
             </div>
         )

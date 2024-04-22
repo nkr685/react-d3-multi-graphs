@@ -13,9 +13,9 @@ class BarChart extends Component {
 
     componentDidUpdate() { // preprocessing on long running task so it doesnt affect rendering process
         // set the dimensions and margins of the graph
-        var margin = { top: 10, right: 40, bottom: 30, left: 40 },
-        w = 600 - margin.left - margin.right,
-        h = 400 - margin.top - margin.bottom;
+        var margin = { top: 10, right: 50, bottom: 50, left: 50 };
+        var w = (window.innerWidth/2) - margin.left - margin.right - 4;
+        var h = (window.innerHeight*.45) - margin.top - margin.bottom;
 
         var data = this.props.data;
         var x = this.props.x;
