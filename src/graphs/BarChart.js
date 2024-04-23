@@ -65,10 +65,10 @@ class BarChart extends Component {
         
         // Add Y axis
         var y_data = temp_data.map((item) => item[1]);
-        var y_ticks = d3.range(0,d3.max(y_data)+d3.max(y_data)/10, 5);
+        var y_ticks = d3.range(0,d3.max(y_data)+Math.ceil(d3.max(y_data)/5), Math.ceil(d3.max(y_data)/5));
         var y_scale = d3
         .scaleLinear()
-        .domain([0, d3.max(y_data)+d3.max(y_data)/20])
+        .domain([0, d3.max(y_data)+d3.max(y_data)/10])
         .range([h, 0]);
 
         container

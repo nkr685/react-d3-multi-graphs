@@ -52,7 +52,7 @@ class ScatterPlot extends Component {
         
         // Add Y axis
         var y_data = data.map((item) => item[y]);
-        var y_ticks = d3.range(2,d3.max(y_data)+d3.max(y_data)/15, 2);
+        var y_ticks = d3.range(Math.floor(d3.max(y_data)/5),d3.max(y_data)+d3.max(y_data)/15, Math.floor(d3.max(y_data)/5));
         var y_scale = d3
         .scaleLinear()
         .domain([0, d3.max(y_data)+d3.max(y_data)/15])
