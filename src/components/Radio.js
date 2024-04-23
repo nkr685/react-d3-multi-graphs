@@ -5,7 +5,7 @@ function Radio(props) {
                 (opt, idx) =>
                     <div key={idx} >
                         <input id={`radio_${idx}`} type="radio" name="options" value={opt} checked={opt === defaultValue} onChange={handleChange}/>
-                        <label htmlFor={`radio_${idx}`} onClick={() => handleChange}>{opt}</label>
+                        <label htmlFor={`radio_${idx}`} onClick={() => handleChange} style={{marginRight: "10px"}}>{opt}</label>
                     </div>
             )
         }

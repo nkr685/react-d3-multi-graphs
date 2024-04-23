@@ -28,11 +28,18 @@ class ScatterPlot extends Component {
         .select(".g_1")
         .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
+        container.append("rect")
+        .attr("width", w - margin.left)
+        .attr("height", h)
+        .attr("transform", `translate(${margin.left}, 0)`)
+        .attr("fill", "#EEEEEE");
+
         // X axis
         var x_data = data.map((item) => item[x]);
+        var x_ticks = d3.range(5,d3.max(x_data)+d3.max(x_data)/25, 5);
         var x_scale = d3
         .scaleLinear()
-        .domain([0,d3.max(x_data)])
+        .domain([0,d3.max(x_data)+d3.max(x_data)/25])
         .range([margin.left, w])
 
         container
@@ -41,13 +48,14 @@ class ScatterPlot extends Component {
         .join("g")
         .attr("class", "x_axis_g")
         .attr("transform", `translate(0, ${h})`)
-        .call(d3.axisBottom(x_scale));
+        .call(d3.axisBottom(x_scale).tickValues(x_ticks));
         
         // Add Y axis
         var y_data = data.map((item) => item[y]);
+        var y_ticks = d3.range(2,d3.max(y_data)+d3.max(y_data)/15, 2);
         var y_scale = d3
         .scaleLinear()
-        .domain([0, d3.max(y_data)])
+        .domain([0, d3.max(y_data)+d3.max(y_data)/15])
         .range([h, 0]);
 
         container
@@ -56,7 +64,7 @@ class ScatterPlot extends Component {
         .join("g")
         .attr("class", "x_axis_g")
         .attr("transform", `translate(${margin.left},0)`)
-        .call(d3.axisLeft(y_scale));
+        .call(d3.axisLeft(y_scale).tickValues(y_ticks))
 
         container
         .selectAll("circle")
@@ -74,7 +82,7 @@ class ScatterPlot extends Component {
         // x-axis label
         container.append("text")
             .attr("x", w/2)
-            .attr("y", h + margin.bottom)
+            .attr("y", h + margin.bottom*.75)
             .attr("text-anchor", "middle")
             .text("total_bill");
 
@@ -82,10 +90,15 @@ class ScatterPlot extends Component {
         container.append("text")
             .attr("transform", "rotate(-90)")
             .attr("x", -h / 2)
-            .attr("y", -margin.left)
+            .attr("y", -margin.left/2)
             .attr("dy", "1em")
             .attr("text-anchor", "middle")
             .text("tip");
+
+        container.selectAll('.tick line').remove();
+        container.selectAll('.domain').remove();
+        container.style('background-color', "green");
+
     }
 
     render () {

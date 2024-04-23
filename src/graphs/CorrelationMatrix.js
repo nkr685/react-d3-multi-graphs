@@ -123,19 +123,36 @@ class CorrelationMatrix extends Component {
             .attr('y1', '100%')
             .attr('y2', '0%');
 
-        grad.append("stop")
-            .attr("offset", "0%")
-            .attr("stop-color", sequentialScale(0.5));
+        var intervals = 10
+        for (let i = 0; i < intervals; i++) {
+            grad.append("stop")
+                .attr("offset", i*10+'%')
+                .attr("stop-color", sequentialScale(0.5+(i*(.5/intervals))));
+        }
 
-        grad.append("stop")
-            .attr("offset", "100%")
-            .attr("stop-color", sequentialScale(1));
-          
         legend.append("rect")
         .attr("width", legendWidth)
         .attr("height", h)
         .style("fill", "url(#legend-gradient)")
 
+        // legend
+        var legend_scale = d3
+        .scaleLinear()
+        .domain([0.5, 1])
+        .range([h, 0]);
+
+        var legend_ticks = d3.range(.5, 1.1, .1)
+
+        container
+        .selectAll(".legend_axis_g")
+        .data([0])
+        .join("g")
+        .attr("class", "legend_axis_g")
+        .attr("transform", `translate(${w + legendSpacing + legendWidth}, 0)`)
+        .call(d3.axisRight(legend_scale).tickValues(legend_ticks));
+
+        container.selectAll('.tick line').remove();
+        container.selectAll('.domain').remove();
     }
     render () {
         return (

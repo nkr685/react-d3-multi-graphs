@@ -77,7 +77,7 @@ class App extends Component {
                         <BarChart x={this.state.radioOption} y={this.state.dropdownOption} data={this.state.data} xAxisTitle={this.state.radioOption} yAxisTitle={this.state.dropdownOption} width={this.state.width} height={this.state.height}/>                                 
                     </div>
                     <div className='graph-container'>
-                        <label style={{color: "white"}}>SPACING, DONT DELETE!!!!</label>
+                        <label style={{justifyContent: "center"}}>Correlation Matrix</label>
                         <CorrelationMatrix axes={this.state.numCols} data={this.state.data} handleChange={handleMatrix} width={this.state.width} height={this.state.height}/>
                     </div>                        
                 </div>
