@@ -21,7 +21,8 @@ class App extends Component {
             matrixX:"None", 
             matrixY:"None",
             width: window.innerWidth,
-            height: window.innerHeight
+            height: window.innerHeight,
+            margin: 20
         };
     }
 
@@ -72,17 +73,17 @@ class App extends Component {
             <div>
                 <Navbar defaultValue={this.state.dropdownOption} options={this.state.numCols} handleChange={handleDropdown}/>
                 <div className='row-items'>
-                    <div className='graph-container'>
+                    <div className='graph-container' style={{margin: this.state.margin/4}}>
                         <Radio defaultValue={this.state.radioOption} options={this.state.catCols} handleChange={handleRadio}/>
-                        <BarChart x={this.state.radioOption} y={this.state.dropdownOption} data={this.state.data} xAxisTitle={this.state.radioOption} yAxisTitle={this.state.dropdownOption} width={this.state.width} height={this.state.height}/>                                 
+                        <BarChart x={this.state.radioOption} y={this.state.dropdownOption} data={this.state.data} xAxisTitle={this.state.radioOption} yAxisTitle={this.state.dropdownOption} width={this.state.width-this.state.margin} height={this.state.height-this.state.margin}/>                                 
                     </div>
-                    <div className='graph-container'>
-                        <label style={{justifyContent: "center"}}>Correlation Matrix</label>
-                        <CorrelationMatrix axes={this.state.numCols} data={this.state.data} handleChange={handleMatrix} width={this.state.width} height={this.state.height}/>
+                    <div className='graph-container' style={{margin: this.state.margin/4}}>
+                        <label style={{justifyContent: "center"}} >Correlation Matrix</label>
+                        <CorrelationMatrix axes={this.state.numCols} data={this.state.data} handleChange={handleMatrix} width={this.state.width-this.state.margin} height={this.state.height-this.state.margin}/>
                     </div>                        
                 </div>
-                <div className='graph-container'>
-                    <ScatterPlot x={this.state.matrixX} y={this.state.matrixY} data={this.state.data} width={this.state.width} height={this.state.height}/>
+                <div className='graph-container' style={{margin: this.state.margin/4}}>
+                    <ScatterPlot x={this.state.matrixX} y={this.state.matrixY} data={this.state.data} width={this.state.width-this.state.margin} height={this.state.height-this.state.margin}/>
                 </div>
             </div>
         )

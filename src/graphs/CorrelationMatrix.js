@@ -34,7 +34,6 @@ class CorrelationMatrix extends Component {
         })
 
         var columns = axes.map(column => {
-            console.log(column)
             return filteredData.map(row => row[column])
         })
 

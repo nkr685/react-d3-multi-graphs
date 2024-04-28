@@ -49,6 +49,9 @@ class BarChart extends Component {
 
         // X axis
         var x_data = temp_data.map((item) => item[0]);
+        if (x === 'day') {
+            x_data.sort(this.sortDays)
+        }
         var x_scale = d3
         .scaleBand()
         .domain(x_data)
@@ -99,7 +102,7 @@ class BarChart extends Component {
             d3.select(this.parentNode)
             .append("text")
             .attr("x", x_scale(d[0]) + x_scale.bandwidth()/2)
-            .attr("y", y_scale(d[1]) + font_size)
+            .attr("y", y_scale(d[1]) + font_size*1.5)
             .attr('text-anchor', "middle")
             .style("fill", "black")
             .text(d[1].toFixed(6))
@@ -124,6 +127,12 @@ class BarChart extends Component {
             container.selectAll('.tick line').remove();
             container.selectAll('.domain').remove();
     }
+
+    sortDays(day, next_day) {
+        let days = ['Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']
+        return days.indexOf(day) - days.indexOf(next_day)
+    }
+
     render () {
         return (
             <svg className="bar">
