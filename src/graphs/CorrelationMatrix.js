@@ -110,7 +110,7 @@ class CorrelationMatrix extends Component {
             }      
         );
 
-        var legend = container.append("svg")
+        var legend = container.append("g")
         .attr("transform", `translate(${w + legendSpacing}, 0)`)
 
         // gradient for color bar
