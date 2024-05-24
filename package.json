@@ -13,7 +13,7 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
-  "homepage": "https://nkr74.github.io/react-d3-multi-graphs/",
+  "homepage": "https://nkr685.github.io/react-d3-multi-graphs/",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",

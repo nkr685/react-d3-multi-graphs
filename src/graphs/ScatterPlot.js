@@ -28,7 +28,10 @@ class ScatterPlot extends Component {
         .select(".g_1")
         .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-        container.append("rect")
+        container.selectAll('.myrect')
+        .data(x)
+        .join("rect")
+        .classed('myrect', true)
         .attr("width", w - margin.left)
         .attr("height", h)
         .attr("transform", `translate(${margin.left}, 0)`)
@@ -77,23 +80,53 @@ class ScatterPlot extends Component {
             return y_scale(d[y]);
         })
         .attr("r", 3)
-        .attr("fill", "gray");
+        .attr("fill", "gray")
+        .on("mouseover", (event, d) => {
+            console.log(d)
+            tooltip.html(`${x}: ${d[x]}<br>${y}: ${d[y]}`) 
+            .style("visibility", "visible") 
+            .style("background-color", "white")
+            .style("border","1px solid black")
+            .style("padding","5px")
+            .style("border-radius","5px")
+
+          })
+          .on("mousemove", (event) =>
+            tooltip
+              .style("top", event.pageY - 10 + "px")  
+              .style("left", event.pageX + 10 + "px") 
+          )
+          .on("mouseout", () => tooltip.style("visibility", "hidden"));  
+  
+          var tooltip = d3.select("body")
+          .selectAll(".tooltip_div")
+          .data([0])  
+          .join("div")  
+          .attr("class", "tooltip_div")  
+          .style("position", "absolute")  
+          .style("visibility", "hidden");   
 
         // x-axis label
-        container.append("text")
+        container.selectAll('.x-axis-label')
+            .data(x)
+            .join("text")
+            .classed('x-axis-label', true)
             .attr("x", w/2)
             .attr("y", h + margin.bottom*.75)
             .attr("text-anchor", "middle")
-            .text("total_bill");
+            .text(x);
 
         // y-axis lable
-        container.append("text")
+        container.selectAll('.y-axis-label')
+            .data(y)
+            .join("text")
+            .classed('y-axis-label', true)
             .attr("transform", "rotate(-90)")
             .attr("x", -h / 2)
             .attr("y", -margin.left/2)
             .attr("dy", "1em")
             .attr("text-anchor", "middle")
-            .text("tip");
+            .text(y);
 
         container.selectAll('.tick line').remove();
         container.selectAll('.domain').remove();
